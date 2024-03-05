@@ -61,7 +61,7 @@ if late_ver != cur_ver:
                     input("Network error, ENTER to quit")
                     quit()
                 os.system("tar -xf /tmp/blender.tar.xz -C /tmp")
-                os.system(f"rm -rf ~/{install_path}* && mv /tmp/{i[:-7]}/* ~/{install_path}")
+                os.system(f"rm -rf {install_path}* && mv /tmp/{i[:-7]}/* {install_path}")
                 input("Updated, ENTER to quit")
 else:
     input("No updates, ENTER to quit")
