@@ -38,10 +38,15 @@ def run(cmd):
 cur_ver = run("blender -v | sed -n '1p' | grep -oP '[0-9].*'")
 print("Installed version:", cur_ver)
 
-latestdir = run("curl --silent https://ftp.halifax.rwth-aachen.de/blender/release/ | grep -o 'href=\"Blender[0-9]\\.[0-9]' | sed -n '$p' | grep -oP 'Ble.*'")
-#print(latestdir)
+dirs = run("curl --silent https://ftp.halifax.rwth-aachen.de/blender/release/ | grep -o 'href=\"Blender[0-9]\\.[0-9]' | grep -oP 'Ble.*'").split("\n")
 
-files = run(f"curl --silent https://ftp.halifax.rwth-aachen.de/blender/release/{latestdir}/ | grep -oP '\"blender-[0-9]\\.[0-9]\\.[0-9]'[^\\\"]+ | sed 's/\"//'").split("\n")
+for i in range(len(dirs)):
+    files = run(f"curl --silent https://ftp.halifax.rwth-aachen.de/blender/release/{dirs[-(i+1)]}/ | grep -oP '\"blender-[0-9]\\.[0-9]\\.[0-9]'[^\\\"]+ | sed 's/\"//'").split("\n")
+    if files == [''] or files == ['0.0.0']:
+        continue
+    else:
+        latestdir = dirs[-(i+1)]
+        break
 #print(files)
 
 newest = 0
