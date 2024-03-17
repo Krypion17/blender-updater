@@ -6,8 +6,8 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("-m", "--mirror", help = "Specify custom mirror")
-parser.add_argument("-p", "--path", help = "Specify custom install path")
+parser.add_argument("-m", "--mirror", help = "Specify custom mirror, default is https://ftp.halifax.rwth-aachen.de/blender/release/")
+parser.add_argument("-p", "--path", help = "Specify custom install path, default is ~/Apps/blender/")
 
 args = parser.parse_args()
 
